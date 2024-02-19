@@ -1,0 +1,42 @@
+.form-box{
+    display: flex; 
+    border: 1px solid black;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+}
+
+.form-fields {
+    margin-right: 10px;
+    width: 200px;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.form-fields label {
+    font-weight: bold;
+}
+
+.form-fields input[type="text"],input[type="email"] {
+    height: 28px
+}
+
+.form-submit-btn{
+    background-color:#0d6efd;
+    border-radius: 4px;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;    
+    margin-top: 5px;
+}
+
+.form-submit-btn:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.required {
+    color: red
+}

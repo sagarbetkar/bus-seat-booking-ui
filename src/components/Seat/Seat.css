@@ -1,0 +1,35 @@
+.seat{
+    position: relative;
+    width: 80px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+.pillow {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.available {
+    background-color: #fff;
+}
+
+.booked {
+    background-color: grey;
+}
+
+.selected {
+    background-color: lightgreen;
+}
+
+.seat-label{
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}

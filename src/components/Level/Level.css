@@ -1,0 +1,11 @@
+.lower-level {
+    padding-bottom: 20px;
+}
+
+.upper-level {
+    padding-top: 20px
+}
+
+.level th, .level td {
+    border: none;
+}
