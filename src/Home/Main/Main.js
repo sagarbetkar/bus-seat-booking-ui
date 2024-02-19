@@ -7,7 +7,13 @@ function Main(props) {
   const [reservationData, setReservationData] = useState(props.data)
 
   return (
-    <>
+    <div
+      style={{
+        minHeight: '640px',
+        height: '100%',
+        marginBottom: '30px',
+      }}
+    >
       {props.path === PATH.DASH && (
         <Dashboard
           data={reservationData}
@@ -20,7 +26,7 @@ function Main(props) {
           updateData={(data) => setReservationData(data)}
         />
       )}
-    </>
+    </div>
   )
 }
 
