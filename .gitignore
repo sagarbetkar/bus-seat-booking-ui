@@ -132,3 +132,4 @@ dist
 
 .prettierignore
 .prettierrc.js
+.vscode

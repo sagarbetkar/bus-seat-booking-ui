@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Dashboard from '../../components/Dashboard/Dashboard'
 import Reservation from '../../components/Reservation/Reservation'
-import { PATH } from '../../config/path.config.js'
+import { Routes, Route } from 'react-router-dom'
 
 function Main(props) {
   const [reservationData, setReservationData] = useState(props.data)
@@ -14,18 +14,26 @@ function Main(props) {
         marginBottom: '30px',
       }}
     >
-      {props.path === PATH.DASH && (
-        <Dashboard
-          data={reservationData}
-          updateData={(data) => setReservationData(data)}
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <Dashboard
+              data={reservationData}
+              updateData={(data) => setReservationData(data)}
+            />
+          }
         />
-      )}
-      {props.path === PATH.RESV && (
-        <Reservation
-          data={reservationData}
-          updateData={(data) => setReservationData(data)}
+        <Route
+          path='/reservation'
+          element={
+            <Reservation
+              data={reservationData}
+              updateData={(data) => setReservationData(data)}
+            />
+          }
         />
-      )}
+      </Routes>
     </div>
   )
 }
