@@ -1,8 +1,14 @@
+import { useReducer } from 'react'
 import Footer from './Footer/Footer'
 import Header from './Header/Header'
 import Main from './Main/Main'
+import {
+  SeatsContext,
+  SeatsDispatchContext,
+} from '../components/Context/SeatsContext'
+import seatsReducer from '../Reducer/SeatsReducer'
 
-const data = Array.from({ length: 40 }, (_, i) => {
+const initialSeats = Array.from({ length: 40 }, (_, i) => {
   return {
     id: i + 1,
     seatNumber: i < 20 ? `L${i + 1}` : `U${i + 1}`,
@@ -18,10 +24,15 @@ const data = Array.from({ length: 40 }, (_, i) => {
 })
 
 function Home() {
+  const [seats, dispatch] = useReducer(seatsReducer, initialSeats)
   return (
     <>
       <Header />
-      <Main data={data} />
+      <SeatsContext.Provider value={seats}>
+        <SeatsDispatchContext.Provider value={dispatch}>
+          <Main />
+        </SeatsDispatchContext.Provider>
+      </SeatsContext.Provider>
       <Footer />
     </>
   )

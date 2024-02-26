@@ -1,14 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
 import Modal from '../Modal/Modal'
 
-function EditBookingDetailsModal({
-  onSubmit,
-  isOpen,
-  onClose,
-  selectedData,
-  data,
-}) {
-  const [formData, setFormData] = useState([...data])
+function EditBookingDetailsModal({ onSubmit, isOpen, onClose, selectedData }) {
+  const [formData, setFormData] = useState([selectedData])
   const [disableSave, setDisableSave] = useState(true)
   const focusInputRef = useRef(null)
 
@@ -39,7 +33,7 @@ function EditBookingDetailsModal({
 
   const clearFormData = () => {
     setDisableSave(true)
-    setFormData(data)
+    setFormData([selectedData])
     onClose()
   }
 

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import './Header.css'
 
-function Header(props) {
+function Header() {
   return (
     <header className='topnav'>
       <div>

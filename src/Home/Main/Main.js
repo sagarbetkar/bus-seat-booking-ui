@@ -1,11 +1,8 @@
-import { useState } from 'react'
 import Dashboard from '../../components/Dashboard/Dashboard'
 import Reservation from '../../components/Reservation/Reservation'
 import { Routes, Route } from 'react-router-dom'
 
-function Main(props) {
-  const [reservationData, setReservationData] = useState(props.data)
-
+function Main() {
   return (
     <div
       style={{
@@ -15,24 +12,8 @@ function Main(props) {
       }}
     >
       <Routes>
-        <Route
-          path='/'
-          element={
-            <Dashboard
-              data={reservationData}
-              updateData={(data) => setReservationData(data)}
-            />
-          }
-        />
-        <Route
-          path='/reservation'
-          element={
-            <Reservation
-              data={reservationData}
-              updateData={(data) => setReservationData(data)}
-            />
-          }
-        />
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/reservation' element={<Reservation />} />
       </Routes>
     </div>
   )

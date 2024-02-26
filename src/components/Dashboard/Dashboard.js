@@ -1,47 +1,28 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './Dashboard.css'
-import EditBookingDetailsModal from '../EditBookingDetailsModal/EditBookingDetailsModal'
+import { SeatsContext, SeatsDispatchContext } from '../Context/SeatsContext'
+import AddBookingDetailsModal from '../AddBookingDetailsModal/AddBookingDetailsModal'
 
 function Dashboard(props) {
-  const [data, setData] = useState(props.data)
+  const seats = useContext(SeatsContext)
+  const dispatch = useContext(SeatsDispatchContext)
   const [showModal, setShowModal] = useState(false)
   const [selectedRow, setSelectedRow] = useState({})
 
-  const deleteBooking = (e, dataItem) => {
+  const deleteBooking = (e, formData) => {
     e.preventDefault()
-    const updateItem = {
-      ...dataItem,
-      user: {
-        firstName: '',
-        lastName: '',
-        email: '',
-      },
-      isBooked: false,
-      isSelected: false,
-      date: null,
-    }
-    const filteredData = data.filter((item) => item.id !== dataItem.id)
-    filteredData.push(updateItem)
-    filteredData.sort((a, b) => a.id - b.id)
-    setData(filteredData)
-    props.updateData(filteredData)
+    dispatch({
+      type: 'deleted',
+      formData,
+    })
   }
 
   const saveFormData = (e, formData) => {
     e.preventDefault()
-    const date = new Date()
-    const updatedData = formData.map((item) => {
-      const itemObj = {
-        ...item,
-      }
-      if (item.isSelected) {
-        itemObj.isBooked = true
-        itemObj.date = date.toLocaleDateString()
-      }
-      return itemObj
+    dispatch({
+      type: 'changed',
+      formData,
     })
-    setData(updatedData)
-    props.updateData(updatedData)
     setShowModal(false)
   }
 
@@ -49,7 +30,7 @@ function Dashboard(props) {
     <>
       <h1>Reservation Status</h1>
       <div className='dash-container'>
-        {data.filter((item) => item.isBooked).length ? (
+        {seats.filter((item) => item.isBooked).length ? (
           <table>
             <tbody>
               <tr>
@@ -59,7 +40,7 @@ function Dashboard(props) {
                 <th>Email</th>
                 <th>Action</th>
               </tr>
-              {data
+              {seats
                 .filter((item) => item.isBooked)
                 .map((item) => (
                   <tr key={item.id}>
@@ -97,11 +78,10 @@ function Dashboard(props) {
         )}
       </div>
       {showModal && selectedRow && (
-        <EditBookingDetailsModal
+        <AddBookingDetailsModal
           isOpen={showModal}
           onSubmit={saveFormData}
-          selectedData={selectedRow}
-          data={data}
+          data={[selectedRow]}
           onClose={() => setShowModal(false)}
         />
       )}
