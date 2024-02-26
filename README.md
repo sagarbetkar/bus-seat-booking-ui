@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d40fb11a-7445-4edd-b49b-9a3ab2176769/deploy-status)](https://app.netlify.com/sites/bus-seat-booking-ui/deploys?branch=master)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
